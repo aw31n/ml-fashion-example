@@ -18,9 +18,8 @@ With no CUDA-support it will fallback to CPU, so if you don't want to hastle wit
 Use the Anaconda Command Prompt.
 
 ```
-conda create --name ml Python=3.8.10
+conda create --name ml Python=3.10.11
 conda activate ml
-conda config --set solver classic # was needed for me as i was trying out libmamba, which did not work as expected. You may ignore this line if you want
 conda install pytorch==1.12.1 torchvision==0.13.1 torchaudio==0.12.1 cudatoolkit=11.3 -c pytorch
 ```
 
