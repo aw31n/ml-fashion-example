@@ -2,6 +2,7 @@
 # ML-Fashion-Example aka What I was hoping for @CIMData :)
 
 This script downloads a dataset of 10k small images of clothing / fashion products and tries to classify each one of them, i.e. guess if it is a bag, pullover, shoe, etc...  
+https://github.com/zalandoresearch/fashion-mnist
 
 For every run, it computes the accuracy (how many images were classified correctly) and tries to adjust the model to improve for the next run.
 
