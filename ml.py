@@ -21,7 +21,7 @@ test_data = datasets.FashionMNIST(
     transform=ToTensor(),
 )
 
-batch_size = 64 # seems like smaller batch sizes increase accuracy
+batch_size = 8 # seems like smaller batch sizes increase accuracy
 
 # Create data loaders.
 train_dataloader = DataLoader(training_data, batch_size=batch_size)
@@ -47,11 +47,11 @@ class NeuralNetwork(nn.Module):
         super().__init__()
         self.flatten = nn.Flatten()
         self.linear_relu_stack = nn.Sequential(
-            nn.Linear(28*28, 512),
+            nn.Linear(28*28, 28*28*9),
             nn.ReLU(),
-            nn.Linear(512, 512),
+            nn.Linear(28*28*9, 28*28*9),
             nn.ReLU(),
-            nn.Linear(512, 10)
+            nn.Linear(28*28*9, 10)
         )
 
     def forward(self, x):
@@ -103,7 +103,7 @@ def trainModel():
 
     accuracy = 0
     currentEpoch = 0
-    maxEpoch = 10
+    maxEpoch = 30
     while True:
         currentEpoch += 1
         print(f"Epoch {currentEpoch}\n-------------------------------")
