@@ -5,6 +5,14 @@ from torch.utils.data import DataLoader
 from torchvision import datasets
 from torchvision.transforms import ToTensor
 
+path = "data/model.pth"
+batch_size = 8 # seems like smaller batch sizes increase accuracy, so I moved from 64 to 8
+# As long as it shows improvement, the model will be trained endlessly. 
+# You can limit the maximum number of epochs here.
+# If you want to get over it fast, set maxEpoch=1
+# Make sure to delete the model.pth-file if you want to re-run the training
+maxEpoch = 30
+
 # Download training data from open datasets.
 training_data = datasets.FashionMNIST(
     root="data",
@@ -21,7 +29,6 @@ test_data = datasets.FashionMNIST(
     transform=ToTensor(),
 )
 
-batch_size = 8 # seems like smaller batch sizes increase accuracy
 
 # Create data loaders.
 train_dataloader = DataLoader(training_data, batch_size=batch_size)
@@ -40,7 +47,9 @@ device = (
     if torch.backends.mps.is_available()
     else "cpu"
 )
+print( '****************************')
 print(f"Using {device} device")
+print( '****************************')
 
 class NeuralNetwork(nn.Module):
     def __init__(self):
@@ -103,7 +112,6 @@ def trainModel():
 
     accuracy = 0
     currentEpoch = 0
-    maxEpoch = 30
     while True:
         currentEpoch += 1
         print(f"Epoch {currentEpoch}\n-------------------------------")
@@ -119,7 +127,6 @@ def trainModel():
     print(f"Best accuracy {accuracy}%")
 
 model = NeuralNetwork().to(device)
-path = "data/model.pth"
 
 if os.path.exists(path):
     model.load_state_dict(torch.load(path))
