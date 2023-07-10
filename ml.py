@@ -10,8 +10,9 @@ batch_size = 8 # seems like smaller batch sizes increase accuracy, so I moved fr
 # As long as it shows improvement, the model will be trained endlessly. 
 # You can limit the maximum number of epochs here.
 # If you want to get over it fast, set maxEpoch=1
+# If you got time, set it to a value of 30 or so
 # Make sure to delete the model.pth-file if you want to re-run the training
-maxEpoch = 30
+maxEpoch = 1
 
 # Download training data from open datasets.
 training_data = datasets.FashionMNIST(
